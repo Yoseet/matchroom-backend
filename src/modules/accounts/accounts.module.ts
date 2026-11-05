@@ -7,6 +7,10 @@ import {
   User,
   UserSession,
 } from './domain/entities/index.js';
+import { AuthService } from './application/services/auth.service.js';
+import { AuthController } from './presentation/controllers/auth.controller.js';
+import { AuthRateLimitGuard } from './presentation/guards/auth-rate-limit.guard.js';
+import { SessionGuard } from './presentation/guards/session.guard.js';
 
 /**
  * Accounts bounded context: identity, authentication sessions, one-time
@@ -22,5 +26,8 @@ import {
       LegalAcceptance,
     ]),
   ],
+  controllers: [AuthController],
+  providers: [AuthService, AuthRateLimitGuard, SessionGuard],
+  exports: [AuthService, SessionGuard],
 })
 export class AccountsModule {}

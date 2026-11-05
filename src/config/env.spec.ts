@@ -35,6 +35,9 @@ describe('validateEnvironment', () => {
       DB_SSL: true,
       DB_LOGGING: false,
       DB_MIGRATIONS_RUN: false,
+      SESSION_COOKIE_NAME: 'matchroom_session',
+      SESSION_TTL_HOURS: 168,
+      GOOGLE_CLIENT_ID: null,
     });
   });
 

@@ -19,6 +19,9 @@ export interface Environment {
   DB_SSL: boolean;
   DB_LOGGING: boolean;
   DB_MIGRATIONS_RUN: boolean;
+  SESSION_COOKIE_NAME: string;
+  SESSION_TTL_HOURS: number;
+  GOOGLE_CLIENT_ID: string | null;
 }
 
 function required(
@@ -43,6 +46,20 @@ function toPort(
     throw new Error(`${name} must be an integer between 1 and 65535`);
   }
   return port;
+}
+
+function toPositiveInteger(config: Record<string, unknown>, name: 'SESSION_TTL_HOURS', fallback: number): number {
+  const raw = config[name];
+  const value = typeof raw === 'string' && raw.trim() !== '' ? Number(raw) : fallback;
+  if (!Number.isInteger(value) || value < 1 || value > 24 * 90) {
+    throw new Error(`${name} must be an integer between 1 and ${24 * 90}`);
+  }
+  return value;
+}
+
+function optional(config: Record<string, unknown>, name: keyof Environment): string | null {
+  const value = config[name];
+  return typeof value === 'string' && value.trim() !== '' ? value.trim() : null;
 }
 
 function toBoolean(
@@ -84,5 +101,8 @@ export function validateEnvironment(
     DB_SSL: toBoolean(config, 'DB_SSL'),
     DB_LOGGING: toBoolean(config, 'DB_LOGGING'),
     DB_MIGRATIONS_RUN: toBoolean(config, 'DB_MIGRATIONS_RUN'),
+    SESSION_COOKIE_NAME: optional(config, 'SESSION_COOKIE_NAME') ?? 'matchroom_session',
+    SESSION_TTL_HOURS: toPositiveInteger(config, 'SESSION_TTL_HOURS', 168),
+    GOOGLE_CLIENT_ID: optional(config, 'GOOGLE_CLIENT_ID'),
   };
 }
