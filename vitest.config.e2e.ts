@@ -6,6 +6,6 @@ export default defineConfig({
     globals: true,
     root: './',
     include: ['**/*.e2e-spec.ts'],
-    env: { NODE_ENV: 'test' },
+    env: { NODE_ENV: 'test', AUTH_RETURN_RESET_TOKEN: 'true' },
   },
 });

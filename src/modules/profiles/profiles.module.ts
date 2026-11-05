@@ -8,6 +8,7 @@ import {
   RoommatePreference,
   UserPreferredZone,
 } from './domain/entities/index.js';
+import { ProfilesService } from './application/services/profiles.service.js';
 
 /**
  * Profiles bounded context: public profile plus lifestyle, roommate and
@@ -24,5 +25,7 @@ import {
       HousingPreferenceAmenity,
     ]),
   ],
+  providers: [ProfilesService],
+  exports: [ProfilesService],
 })
 export class ProfilesModule {}

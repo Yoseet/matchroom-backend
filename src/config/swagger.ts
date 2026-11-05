@@ -33,6 +33,7 @@ export function setupSwagger(app: INestApplication): void {
       'access-token',
     )
     .addTag('health', 'Estado del servicio y de la base de datos')
+    .addTag('auth', 'Registro, sesiones y contraseña')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

@@ -27,14 +27,17 @@
     "migration:run:prod": "node ./node_modules/typeorm/cli.js migration:run -d dist/common/database/data-source.js",
     "migration:revert:prod": "node ./node_modules/typeorm/cli.js migration:revert -d dist/common/database/data-source.js",
     "migration:create": "npm run typeorm -- migration:create",
+    "seed:test": "tsx src/common/database/seeds/run.ts",
     "db:setup": "npm run migration:run"
   },
   "dependencies": {
     "@nestjs/common": "^12.0.1",
     "@nestjs/core": "^12.0.1",
+    "@nestjs/jwt": "^12.0.3",
     "@nestjs/platform-express": "^12.0.1",
     "@nestjs/swagger": "^12.1.0",
     "@nestjs/typeorm": "^12.0.2",
+    "bcryptjs": "^3.0.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
     "dotenv": "^18.0.9",

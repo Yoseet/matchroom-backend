@@ -19,6 +19,19 @@ export interface Environment {
   DB_SSL: boolean;
   DB_LOGGING: boolean;
   DB_MIGRATIONS_RUN: boolean;
+
+  JWT_ACCESS_SECRET: string;
+  JWT_ACCESS_TTL_SECONDS: number;
+  JWT_REFRESH_SECRET: string;
+  JWT_REFRESH_TTL_SECONDS: number;
+
+  AUTH_MAX_FAILED_ATTEMPTS: number;
+  AUTH_LOCK_MINUTES: number;
+  PASSWORD_RESET_TTL_MINUTES: number;
+  AUTH_RETURN_RESET_TOKEN: boolean;
+
+  LEGAL_TERMS_VERSION: string;
+  LEGAL_PRIVACY_VERSION: string;
 }
 
 function required(
@@ -47,13 +60,42 @@ function toPort(
 
 function toBoolean(
   config: Record<string, unknown>,
-  name: 'DB_SSL' | 'DB_LOGGING' | 'DB_MIGRATIONS_RUN',
+  name:
+    | 'DB_SSL'
+    | 'DB_LOGGING'
+    | 'DB_MIGRATIONS_RUN'
+    | 'AUTH_RETURN_RESET_TOKEN',
 ): boolean {
   const raw = required(config, name).toLowerCase();
   if (raw !== 'true' && raw !== 'false') {
     throw new Error(`${name} must be either "true" or "false"`);
   }
   return raw === 'true';
+}
+
+function toPositiveInteger(
+  config: Record<string, unknown>,
+  name: keyof Environment,
+  min = 1,
+): number {
+  const raw = required(config, name);
+  const value = Number(raw);
+
+  if (!Number.isInteger(value) || value < min) {
+    throw new Error(`${name} must be an integer greater than or equal to ${min}`);
+  }
+  return value;
+}
+
+function toSecret(
+  config: Record<string, unknown>,
+  name: 'JWT_ACCESS_SECRET' | 'JWT_REFRESH_SECRET',
+): string {
+  const value = required(config, name);
+  if (value.length < 32) {
+    throw new Error(`${name} must be at least 32 characters long`);
+  }
+  return value;
 }
 
 function toNodeEnvironment(config: Record<string, unknown>): NodeEnvironment {
@@ -84,5 +126,30 @@ export function validateEnvironment(
     DB_SSL: toBoolean(config, 'DB_SSL'),
     DB_LOGGING: toBoolean(config, 'DB_LOGGING'),
     DB_MIGRATIONS_RUN: toBoolean(config, 'DB_MIGRATIONS_RUN'),
+
+    JWT_ACCESS_SECRET: toSecret(config, 'JWT_ACCESS_SECRET'),
+    JWT_ACCESS_TTL_SECONDS: toPositiveInteger(
+      config,
+      'JWT_ACCESS_TTL_SECONDS',
+    ),
+    JWT_REFRESH_SECRET: toSecret(config, 'JWT_REFRESH_SECRET'),
+    JWT_REFRESH_TTL_SECONDS: toPositiveInteger(
+      config,
+      'JWT_REFRESH_TTL_SECONDS',
+    ),
+
+    AUTH_MAX_FAILED_ATTEMPTS: toPositiveInteger(
+      config,
+      'AUTH_MAX_FAILED_ATTEMPTS',
+    ),
+    AUTH_LOCK_MINUTES: toPositiveInteger(config, 'AUTH_LOCK_MINUTES'),
+    PASSWORD_RESET_TTL_MINUTES: toPositiveInteger(
+      config,
+      'PASSWORD_RESET_TTL_MINUTES',
+    ),
+    AUTH_RETURN_RESET_TOKEN: toBoolean(config, 'AUTH_RETURN_RESET_TOKEN'),
+
+    LEGAL_TERMS_VERSION: required(config, 'LEGAL_TERMS_VERSION'),
+    LEGAL_PRIVACY_VERSION: required(config, 'LEGAL_PRIVACY_VERSION'),
   };
 }

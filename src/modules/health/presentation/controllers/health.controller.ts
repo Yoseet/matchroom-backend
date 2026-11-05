@@ -11,9 +11,11 @@ import {
 } from '@nestjs/swagger';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { Public } from '../../../../common/auth/index.js';
 import { HealthResponseDto } from '../../application/dto/health-response.dto.js';
 
 @ApiTags('health')
+@Public()
 @Controller('health')
 export class HealthController {
   constructor(

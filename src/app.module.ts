@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { CommonAuthModule } from './common/auth/index.js';
 import { DatabaseModule } from './common/database/database.module.js';
 import { AccountsModule } from './modules/accounts/accounts.module.js';
 import { CatalogModule } from './modules/catalog/catalog.module.js';
@@ -20,6 +21,7 @@ import { SafetyModule } from './modules/safety/safety.module.js';
 @Module({
   imports: [
     DatabaseModule,
+    CommonAuthModule,
     CatalogModule,
     AccountsModule,
     MediaModule,

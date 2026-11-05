@@ -33,6 +33,10 @@ describe('OpenAPI (e2e)', () => {
     expect(response.body.info.title).toBe('MatchRoom API');
     expect(response.body.paths).toHaveProperty('/api/v1/health');
     expect(response.body.paths['/api/v1/health'].get.tags).toContain('health');
+    expect(response.body.paths).toHaveProperty('/api/v1/auth/login');
+    expect(response.body.paths['/api/v1/auth/login'].post.tags).toContain(
+      'auth',
+    );
     expect(response.body.components.securitySchemes['access-token']).toMatchObject(
       {
         type: 'http',

@@ -60,6 +60,7 @@ escritos en el código.
 | `npm run migration:show` | Estado de migraciones |
 | `npm run migration:run:prod` | Aplica migraciones con el build compilado |
 | `npm run migration:create -- src/common/database/migrations/Nombre` | Crea una migración vacía |
+| `npm run seed:test` | Siembra el catálogo y las cuentas de prueba |
 
 ## Documentación de la API
 
@@ -83,11 +84,76 @@ La API se documenta con **OpenAPI 3** y **Swagger UI** mediante
 - `test/swagger.e2e-spec.ts` verifica que el documento JSON y la interfaz se
   sirvan correctamente.
 
+## Autenticación (`accounts`)
+
+El módulo `accounts` implementa el núcleo de autenticación con correo y
+contraseña:
+
+| Método | Ruta | Acceso | Descripción |
+| --- | --- | --- | --- |
+| `POST` | `/api/v1/auth/register` | Público | Crea la cuenta, el perfil vacío, la privacidad por defecto y las aceptaciones legales |
+| `POST` | `/api/v1/auth/login` | Público | Inicia sesión y devuelve access + refresh token |
+| `POST` | `/api/v1/auth/refresh` | Público | Rota el refresh token y emite tokens nuevos |
+| `POST` | `/api/v1/auth/logout` | Bearer | Revoca la sesión actual |
+| `GET` | `/api/v1/auth/me` | Bearer | Devuelve la cuenta autenticada |
+| `PATCH` | `/api/v1/auth/password` | Bearer | Cambia la contraseña; revoca las demás sesiones |
+| `POST` | `/api/v1/auth/password/forgot` | Público | Solicita un token de recuperación |
+| `POST` | `/api/v1/auth/password/reset` | Público | Restablece la contraseña y revoca todas las sesiones |
+
+Detalles de seguridad:
+
+- Access token JWT de corta duración y refresh token JWT de larga duración,
+  firmados con secretos distintos (`JWT_ACCESS_SECRET` y
+  `JWT_REFRESH_SECRET`). **Nunca se guardan en el repositorio**: viven en
+  `.env`.
+- El refresh token rota en cada uso. En la base de datos solo se guarda su
+  HMAC-SHA256, nunca el token en claro.
+- Los tokens de recuperación de contraseña son de un solo uso, se guardan
+  hasheados y expiran según `PASSWORD_RESET_TTL_MINUTES`.
+- La cuenta se bloquea temporalmente tras `AUTH_MAX_FAILED_ATTEMPTS` intentos
+  fallidos, durante `AUTH_LOCK_MINUTES`.
+- El guard JWT es global. Las rutas públicas se marcan con `@Public()` y el
+  usuario autenticado se obtiene con `@CurrentUser()`.
+- En desarrollo, `AUTH_RETURN_RESET_TOKEN=true` devuelve el token de
+  recuperación en la respuesta para poder probar el flujo sin proveedor de
+  correo. **No debe activarse en producción.**
+
+Pendiente para una siguiente iteración: verificación de correo con reenvío,
+inicio de sesión con Google, cierre de sesión en todos los dispositivos,
+cambio de modo buscador/arrendador, activación del modo arrendador y
+eliminación de cuenta con periodo de gracia.
+
+## Datos semilla
+
+La migración `SeedCatalogData1762300801000` inserta el catálogo de la ciudad
+de lanzamiento (Ciudad de México, 10 zonas y 12 amenidades) de forma
+idempotente, por lo que se aplica con `npm run migration:run` en cualquier
+entorno.
+
+Las cuentas de prueba se crean aparte, con `npm run seed:test`, que también
+garantiza el catálogo:
+
+| Correo | Contraseña | Modo |
+| --- | --- | --- |
+| `seeker@matchroom.test` | `TestPassword123` | Buscador |
+| `landlord@matchroom.test` | `TestPassword123` | Arrendador (identidad verificada) |
+
+Cada cuenta recibe perfil, privacidad por defecto y aceptaciones legales. El
+seeder es idempotente y se niega a ejecutarse con `NODE_ENV=production`, ya que
+usa una contraseña conocida.
+
 ## Estructura
 
 ```text
 src/
 ├── common/
+│   ├── auth/
+│   │   ├── decorators/             # @Public, @CurrentUser
+│   │   ├── guards/
+│   │   │   └── jwt-auth.guard.ts   # Guard JWT global
+│   │   ├── interfaces/
+│   │   ├── auth.module.ts
+│   │   └── index.ts
 │   ├── database/
 │   │   ├── data-source.ts          # DataSource del CLI de TypeORM
 │   │   ├── database.module.ts      # TypeOrmModule.forRoot
@@ -230,6 +296,9 @@ y devuelven `(lng,lat)`.
   restricciones clave (email `citext`, orden de `matches`) se apliquen.
 - Contrato OpenAPI: `test/swagger.e2e-spec.ts` valida el documento JSON, el
   esquema Bearer y que Swagger UI esté disponible.
+- Autenticación: `test/accounts.e2e-spec.ts` cubre registro, duplicados,
+  validación, login, bloqueo por intentos fallidos, rotación de refresh tokens,
+  cambio y recuperación de contraseña, logout y protección de rutas.
 
 Los tests de integración requieren PostgreSQL disponible y las migraciones
 aplicadas:
@@ -257,6 +326,22 @@ arranque falla con un mensaje claro si falta alguna o tiene un formato inválido
 | `DB_SSL` | — | `true`/`false`, TLS para PostgreSQL gestionado |
 | `DB_LOGGING` | — | `true`/`false`, log de SQL de TypeORM |
 | `DB_MIGRATIONS_RUN` | — | `true`/`false`, ejecutar migraciones al arrancar |
+| `JWT_ACCESS_SECRET` | — | Secreto del access token; mínimo 32 caracteres |
+| `JWT_ACCESS_TTL_SECONDS` | — | Vigencia del access token en segundos |
+| `JWT_REFRESH_SECRET` | — | Secreto del refresh token; mínimo 32 caracteres y distinto del anterior |
+| `JWT_REFRESH_TTL_SECONDS` | — | Vigencia del refresh token en segundos |
+| `AUTH_MAX_FAILED_ATTEMPTS` | — | Intentos fallidos antes de bloquear la cuenta |
+| `AUTH_LOCK_MINUTES` | — | Duración del bloqueo en minutos |
+| `PASSWORD_RESET_TTL_MINUTES` | — | Vigencia del token de recuperación |
+| `AUTH_RETURN_RESET_TOKEN` | — | `true`/`false`; devolver el token de recuperación en desarrollo |
+| `LEGAL_TERMS_VERSION` | — | Versión vigente de los términos aceptados |
+| `LEGAL_PRIVACY_VERSION` | — | Versión vigente del aviso de privacidad |
+
+Genera los secretos JWT con:
+
+```bash
+openssl rand -hex 32
+```
 
 `.env.example` documenta el formato y contiene valores de relleno, nunca
 credenciales reales.

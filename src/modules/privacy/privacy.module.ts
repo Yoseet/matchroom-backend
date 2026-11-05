@@ -5,6 +5,7 @@ import {
   PrivacyRequest,
   PrivacySetting,
 } from './domain/entities/index.js';
+import { PrivacyService } from './application/services/privacy.service.js';
 
 /**
  * Privacy bounded context: visibility settings, data-subject requests and
@@ -18,5 +19,7 @@ import {
       IdentityVerification,
     ]),
   ],
+  providers: [PrivacyService],
+  exports: [PrivacyService],
 })
 export class PrivacyModule {}
