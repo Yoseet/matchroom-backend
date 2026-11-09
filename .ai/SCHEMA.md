@@ -1,9 +1,10 @@
 # MatchRoom — Backend Schema (PostgreSQL + NestJS)
 
-**Versión:** 1.1 — MVP
-**Fecha:** 4 de noviembre de 2026
+**Versión:** 1.2 — MVP (alineada con la implementación TypeORM del repositorio)
+**Fecha:** 5 de noviembre de 2026
 **Fuentes:** `matchroom_requerimientos_consolidados.md` v1.1 y `matchroom_database_entities_mvp_v1_1.md` (fuente de verdad de tablas y columnas).
 **Alcance:** 34 tablas del MVP. La compatibilidad **no** tiene tablas propias: se calcula en un servicio (sección 7). Las funciones de Fase 2 y Futuro se documentan como extensiones (sección 15) y no se implementan.
+**Nota de implementación:** los módulos NestJS, los nombres de servicios y el tipo geográfico (`point` nativo en lugar de `geography`) reflejan el código actual en `src/`. PostGIS queda como mejora opcional.
 
 **Cómo usar este documento:** los diagramas (secciones 3 a 10) definen entidades, columnas y relaciones; las secciones 11 y 12 definen las reglas de comportamiento que los servicios de NestJS deben cumplir. Si algo contradice a `matchroom_database_entities_mvp_v1_1.md` en tablas o columnas, prevalece ese documento.
 
@@ -13,7 +14,7 @@
 
 | Tema | Decisión |
 |---|---|
-| Motor | PostgreSQL 15 o superior, con extensiones `citext` y `postgis`. `gen_random_uuid()` es nativo. |
+| Motor | PostgreSQL 15 o superior, con extensión `citext`. `gen_random_uuid()` es nativo. |
 | Claves primarias | `id uuid` con default `gen_random_uuid()`; la aplicación puede enviar UUID v7. Usar UUID v7 donde el orden temporal ayude a paginar, sobre todo en `messages`. |
 | Tablas especiales | Las tablas 1:1 con `users` usan `user_id` como PK. Las tablas de unión usan PK compuesta. |
 | Nombres | `snake_case`, tablas en plural, FKs como `<entidad>_id`. |
@@ -22,27 +23,27 @@
 | Dinero | `numeric(12,2)`, nunca `float`. Moneda por defecto `MXN` (`char(3)`). |
 | Enums | Columna `text` + `CHECK (col IN (...))`; sin tipos enum nativos. Valores en la sección 13. |
 | `ON DELETE` | `RESTRICT` por defecto; `CASCADE` o `SET NULL` donde se indica. |
-| Migraciones | Versionadas; nunca `synchronize: true`. Los `CHECK`, índices parciales y columnas `geography` se escriben en SQL dentro de la migración si el ORM no los soporta. |
+| Migraciones | Versionadas; nunca `synchronize: true`. Los `CHECK`, índices parciales y columnas geográficas se escriben en SQL dentro de la migración si el ORM no los soporta. |
 | Archivos | Los binarios viven fuera de PostgreSQL (almacenamiento de objetos). La BD guarda solo metadatos en `media_assets`. |
-| Ubicación | `location_exact` y `location_public` son `geography(Point,4326)`. La pública se calcula **al guardar** el anuncio, con el desplazamiento aproximado (~300 m) definido por el producto. |
+| Ubicación | `location_exact` y `location_public` usan el tipo nativo `point` de PostgreSQL, almacenado como `(longitud, latitud)`. La pública se calcula **al guardar** el anuncio con un desplazamiento aproximado (~300 m). PostGIS es opcional. |
+| Columnas sensibles | `password_hash`, `refresh_token_hash`, `token_hash`, `provider_reference`, `address_exact` y `location_exact` se marcan con `select: false` en TypeORM y nunca salen por HTTP. |
 
 ### Mapa de módulos NestJS → entidades
 
 | Módulo NestJS | Entidades |
 |---|---|
-| `AuthModule` | `users`, `auth_identities`, `user_sessions`, `one_time_tokens`, `legal_acceptances` |
+| `AccountsModule` | `users`, `auth_identities`, `user_sessions`, `one_time_tokens`, `legal_acceptances` |
 | `CatalogModule` | `cities`, `zones`, `amenities` |
 | `MediaModule` | `media_assets` |
 | `ProfilesModule` | `profiles`, `lifestyle_profiles`, `roommate_preferences`, `housing_preferences`, `user_preferred_zones`, `housing_preference_amenities` |
-| `PrivacyModule` | `privacy_settings`, `privacy_requests` |
-| `VerificationModule` | `identity_verifications` |
+| `PrivacyModule` | `privacy_settings`, `privacy_requests`, `identity_verifications` |
 | `PropertiesModule` | `properties`, `property_photos`, `property_amenities`, `property_status_history`, `favorite_properties` |
-| `MatchingModule` | `user_interests`, `matches` |
 | `CompatibilityModule` | Sin tablas. `CompatibilityService` lee perfiles, preferencias y propiedades. |
+| `MatchingModule` | `user_interests`, `matches` |
 | `ChatModule` (+ WebSocket gateway) | `conversations`, `conversation_participants`, `messages` |
 | `SafetyModule` | `user_blocks`, `reports` |
-| `NotificationsModule` | `notifications`, `notification_preferences`, `push_devices` |
-| `AuditModule` | `audit_logs` |
+| `NotificationsModule` | `notifications`, `notification_preferences`, `push_devices`, `audit_logs` |
+| `HealthModule` | Sin tablas. Expone `GET /api/v1/health`. |
 
 ---
 
@@ -108,7 +109,7 @@ erDiagram
 
 ---
 
-## 3. Dominio A — Cuentas, acceso y verificación
+## 3. Dominio A — Cuentas, acceso, privacidad y verificación
 
 ```mermaid
 erDiagram
@@ -216,7 +217,7 @@ erDiagram
 - `one_time_tokens`: índice `(user_id, purpose)`. Solo se guarda el hash.
 - `legal_acceptances`: `UNIQUE (user_id, document_type, document_version)`.
 - `identity_verifications`: `UNIQUE (user_id, attempt_number)` y `UNIQUE (user_id) WHERE status = 'in_progress'`.
-- `users.identity_status` e `identity_verified_at` son estado vigente desnormalizado; solo `VerificationService` los modifica, en la misma transacción que `identity_verifications`.
+- `users.identity_status` e `identity_verified_at` son estado vigente desnormalizado; solo `IdentityVerificationService` (en `PrivacyModule`) los modifica, en la misma transacción que `identity_verifications`.
 
 ---
 
@@ -250,6 +251,7 @@ erDiagram
         uuid city_id FK
         text name "colonia o zona"
         text slug
+        varchar postal_code "código postal"
         boolean is_active
     }
     amenities {
@@ -334,7 +336,7 @@ erDiagram
 
 **Restricciones e índices**
 
-- `zones`: `UNIQUE (city_id, slug)`.
+- `zones`: `UNIQUE (city_id, slug)`, índice por `postal_code`.
 - `media_assets`: `CHECK (size_bytes BETWEEN 1 AND 5242880)`.
 - `profiles`: `CHECK (bio IS NULL OR length(bio) <= 500)`; `CHECK (completeness_pct BETWEEN 0 AND 100)`; índice `(city_id, completeness_pct)`.
 - `lifestyle_profiles` y `roommate_preferences`: los niveles llevan `CHECK BETWEEN 1 AND 5`.
@@ -376,8 +378,8 @@ erDiagram
         uuid city_id FK
         uuid zone_id FK
         text address_exact "privada"
-        geography location_exact "Point 4326, privada"
-        geography location_public "Point 4326, aprox 300 m"
+        point location_exact "Privada, (lng,lat)"
+        point location_public "Aprox 300 m, (lng,lat)"
         numeric rent_amount "numeric(12,2) mayor que 0"
         numeric deposit_amount "numeric(12,2)"
         numeric additional_costs_estimate "numeric(12,2)"
@@ -441,6 +443,7 @@ erDiagram
       AND available_from IS NOT NULL AND location_public IS NOT NULL))
     ```
   - Índice parcial `(city_id, zone_id, rent_amount) WHERE status = 'active' AND deleted_at IS NULL`; `GIST (location_public)`; `(landlord_id, status)`.
+  - En esta implementación las columnas geográficas usan `point` nativo `(lng,lat)` y `PointTransformer` en TypeORM. El `GIST` sigue siendo válido. Si el entorno tiene PostGIS, se puede migrar a `geography(Point,4326)` con el SQL documentado en `README.md`.
 - `property_photos`: `CHECK (position BETWEEN 1 AND 15)`, `UNIQUE (property_id, position)` (limita a 15 fotos) y `UNIQUE (property_id) WHERE is_cover` (una sola portada).
 - `property_status_history`: índice `(property_id, created_at)`.
 - Lenguaje de producto: **disponible = `active`**, **reservada = `reserved`**, **rentada = `rented`**.
@@ -694,7 +697,7 @@ Se implementan principalmente en servicios NestJS y transacciones. Las restricci
 - `users`, `profiles` y `privacy_settings` se crean en **una sola transacción** al registrarse. `profiles` nace vacío.
 - Los términos y la privacidad se registran en `legal_acceptances` con versión y declaración de mayoría de edad. La edad se valida en el servicio a partir de `profiles.birth_date`.
 - `one_time_tokens` guarda solo hashes. Un token es válido si no se ha usado y `expires_at > now()`; su consumo debe ser **atómico**.
-- `user_sessions` guarda hashes de refresh tokens, nunca texto plano. Cerrar todas las sesiones revoca las activas del usuario.
+- `user_sessions` guarda hashes de refresh tokens, nunca texto plano. El cierre de sesión normal revoca solo la sesión actual; el cierre en todos los dispositivos queda fuera de esta iteración.
 - Si el correo de Google coincide con una cuenta existente, la vinculación exige la confirmación de `RN-USR-02`; no se fusionan cuentas automáticamente por coincidencia de correo.
 
 ### 12.2 Visibilidad y privacidad de perfiles
@@ -715,7 +718,7 @@ Esta consulta se centraliza en **un servicio o query builder reutilizable** (por
 - Explorar perfiles y propiedades **no** exige identidad verificada.
 - Enviar intereses, crear conversaciones de renta, enviar mensajes, activar el modo arrendador y publicar anuncios **exigen** identidad verificada y cuenta activa.
 - Verificación de correo e identidad son estados independientes.
-- `VerificationService` es el único que actualiza `users.identity_status` e `identity_verified_at`, en la misma transacción que `identity_verifications`.
+- `IdentityVerificationService` (en `PrivacyModule`) es el único que actualiza `users.identity_status` e `identity_verified_at`, en la misma transacción que `identity_verifications`.
 - Los accesos a referencias o resultados sensibles de verificación se registran en `audit_logs`. No se guardan imágenes de documentos ni secretos del proveedor.
 
 ### 12.4 Intereses y matches
@@ -822,6 +825,7 @@ Ver sección 7. `CompatibilityService` aplica la fórmula de `RN-COM-02`, el tra
 
 - `cities` y `zones` de la ciudad de lanzamiento (otras ciudades se agregan como datos, sin cambios de código).
 - `amenities`: agua, luz, gas, internet, lavadora, estacionamiento, etc.
+- Implementación: la migración `SeedCatalogData1762300801000` siembra la ciudad de lanzamiento (Ciudad de México), sus 10 zonas y 12 amenidades de forma idempotente. Las cuentas de prueba se crean con `npm run seed:test` (`src/common/database/seeds/`), que se niega a ejecutarse si `NODE_ENV=production`.
 
 ---
 
@@ -849,7 +853,7 @@ El esquema permite agregar estas piezas sin modificar las tablas existentes:
 
 ## 16. Orden de creación (migraciones)
 
-1. Extensiones (`citext`, `postgis`).
+1. Extensiones (`citext`; `postgis` solo si el entorno lo tiene disponible).
 2. Catálogos: `cities`, `zones`, `amenities`.
 3. Cuentas y acceso: `users`, `auth_identities`, `user_sessions`, `one_time_tokens`, `legal_acceptances`.
 4. Archivos: `media_assets`.

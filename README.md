@@ -46,29 +46,88 @@ escritos en el código.
 
 ## Scripts
 
-| Script | Descripción |
-| --- | --- |
-| `npm run start:dev` | API en modo watch |
-| `npm run build` | Compila a `dist/` |
-| `npm run start:prod` | Ejecuta el build |
-| `npm test` | Tests unitarios (Vitest) |
-| `npm run test:e2e` | Tests de integración contra PostgreSQL |
-| `npm run test:cov` | Cobertura |
-| `npm run lint` | Oxlint con tipos |
-| `npm run migration:run` | Aplica migraciones pendientes |
-| `npm run migration:revert` | Revierte la última migración |
-| `npm run migration:show` | Estado de migraciones |
-| `npm run migration:run:prod` | Aplica migraciones con el build compilado |
-| `npm run migration:create -- src/common/database/migrations/Nombre` | Crea una migración vacía |
+| Script                                                              | Descripción                                                 |
+| ------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `npm run start:dev`                                                 | API en modo watch                                           |
+| `npm run build`                                                     | Compila a `dist/`                                           |
+| `npm run start:prod`                                                | Ejecuta el build                                            |
+| `npm test`                                                          | Tests unitarios (Vitest)                                    |
+| `npm run test:e2e`                                                  | Tests de integración contra PostgreSQL                      |
+| `npm run test:cov`                                                  | Cobertura                                                   |
+| `npm run lint`                                                      | Oxlint con tipos                                            |
+| `npm run migration:run`                                             | Aplica migraciones pendientes                               |
+| `npm run migration:revert`                                          | Revierte la última migración                                |
+| `npm run migration:show`                                            | Estado de migraciones                                       |
+| `npm run migration:run:prod`                                        | Aplica migraciones con el build compilado                   |
+| `npm run migration:create -- src/common/database/migrations/Nombre` | Crea una migración vacía                                    |
+| `npm run data:cities`                                               | Extrae las ciudades del XML de SEPOMEX a `data/cities.json` |
+| `npm run data:zones`                                                | Extrae las zonas ligadas a ciudades a `data/zones.json`     |
+| `npm run data:extract`                                              | Ejecuta las dos extracciones en orden                       |
+| `npm run seed`                                                      | Carga ciudades, zonas y amenidades en la base               |
+| `npm run seed:cities`                                               | Carga solo las ciudades                                     |
+| `npm run seed:zones`                                                | Carga solo las zonas                                        |
+| `npm run seed:amenities`                                            | Carga las amenidades básicas                                |
+
+## Catálogo de ciudades y zonas (SEPOMEX)
+
+`src/common/database/data/CPdescarga.xml` es el archivo oficial de códigos
+postales. Para no cargar los ~160k registros completos, el catálogo se genera
+en dos pasos:
+
+```bash
+npm run data:extract   # genera cities.json y zones.json
+npm run migration:run  # crea la columna zones.postal_code
+npm run seed           # inserta/actualiza ciudades, zonas y amenidades
+```
+
+- `extract-cities.mjs` toma los valores únicos de `d_ciudad` + `d_estado` y
+  escribe `cities.json` (659 ciudades).
+- `extract-zones.mjs` conserva únicamente las filas que tienen `d_ciudad` y
+  genera `zones.json` (más de 54k zonas). El nombre de la zona sale de
+  `d_asenta`, el slug se normaliza y el nuevo campo `postalCode` sale de
+  `d_codigo`.
+- Los seeders son idempotentes: las ciudades se buscan por `(name, state_name)`
+  y las zonas se actualizan por `(city_id, slug)`.
+
+Los JSON generados se copian a `dist/` durante `npm run build` para que el
+seed también pueda ejecutarse desde el build compilado.
+
+### Endpoints de catálogo
+
+Todos los `GET` usan paginación por offset (`page` empieza en 1, `pageSize`
+máximo 100) y devuelven `{ data, meta }`, donde `meta` contiene `page`,
+`pageSize`, `total` y `totalPages`.
+
+| Método | Ruta                           | Descripción                                                                                                                           |
+| ------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET`  | `/api/v1/catalog/cities`       | Ciudades activas. Filtros opcionales `stateName` y `postalCode`.                                                                      |
+| `GET`  | `/api/v1/catalog/zones`        | Zonas activas. Filtros opcionales `cityId` y `postalCode`; sin `cityId` devuelve zonas de todas las ciudades.                         |
+| `GET`  | `/api/v1/catalog/amenities`    | Amenidades activas, ordenadas por nombre.                                                                                             |
+| `GET`  | `/api/v1/catalog/autocomplete` | Autocompletado de ciudades y zonas por nombre o código postal. Requiere `q` (mínimo 2 caracteres) y acepta `type=all\|cities\|zones`. |
+
+Ejemplos:
+
+```bash
+curl "http://localhost:3000/api/v1/catalog/cities?page=1&pageSize=20"
+curl "http://localhost:3000/api/v1/catalog/cities?stateName=Jalisco"
+curl "http://localhost:3000/api/v1/catalog/cities?postalCode=06700"
+curl "http://localhost:3000/api/v1/catalog/zones?cityId=<uuid>"
+curl "http://localhost:3000/api/v1/catalog/zones?postalCode=06700"
+curl "http://localhost:3000/api/v1/catalog/amenities?page=1&pageSize=50"
+curl "http://localhost:3000/api/v1/catalog/autocomplete?q=roma&type=all"
+```
+
+Por ahora estos endpoints son públicos; cuando se integre el guard JWT global
+deberán marcarse con `@Public()`.
 
 ## Documentación de la API
 
 La API se documenta con **OpenAPI 3** y **Swagger UI** mediante
 `@nestjs/swagger`.
 
-| Recurso | URL |
-| --- | --- |
-| Swagger UI | `http://localhost:3000/api/docs` |
+| Recurso                  | URL                                   |
+| ------------------------ | ------------------------------------- |
+| Swagger UI               | `http://localhost:3000/api/docs`      |
 | Documento OpenAPI (JSON) | `http://localhost:3000/api/docs-json` |
 
 - La documentación se registra desde `src/config/swagger.ts` y **se desactiva
@@ -144,19 +203,19 @@ exportados. `health` solo contiene su controller y su módulo.
 
 ## Dominios y tablas
 
-| Dominio | Tablas |
-| --- | --- |
-| `catalog` | `cities`, `zones`, `amenities` |
-| `accounts` | `users`, `auth_identities`, `user_sessions`, `one_time_tokens`, `legal_acceptances` |
-| `media` | `media_assets` |
-| `profiles` | `profiles`, `lifestyle_profiles`, `roommate_preferences`, `housing_preferences`, `user_preferred_zones`, `housing_preference_amenities` |
-| `privacy` | `privacy_settings`, `privacy_requests`, `identity_verifications` |
-| `properties` | `properties`, `property_photos`, `property_amenities`, `property_status_history`, `favorite_properties` |
-| `compatibility` | — (sin tablas) |
-| `matching` | `user_interests`, `matches` |
-| `chat` | `conversations`, `conversation_participants`, `messages` |
-| `safety` | `user_blocks`, `reports` |
-| `notifications` | `notifications`, `notification_preferences`, `push_devices`, `audit_logs` |
+| Dominio         | Tablas                                                                                                                                  |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `catalog`       | `cities`, `zones`, `amenities`                                                                                                          |
+| `accounts`      | `users`, `auth_identities`, `user_sessions`, `one_time_tokens`, `legal_acceptances`                                                     |
+| `media`         | `media_assets`                                                                                                                          |
+| `profiles`      | `profiles`, `lifestyle_profiles`, `roommate_preferences`, `housing_preferences`, `user_preferred_zones`, `housing_preference_amenities` |
+| `privacy`       | `privacy_settings`, `privacy_requests`, `identity_verifications`                                                                        |
+| `properties`    | `properties`, `property_photos`, `property_amenities`, `property_status_history`, `favorite_properties`                                 |
+| `compatibility` | — (sin tablas)                                                                                                                          |
+| `matching`      | `user_interests`, `matches`                                                                                                             |
+| `chat`          | `conversations`, `conversation_participants`, `messages`                                                                                |
+| `safety`        | `user_blocks`, `reports`                                                                                                                |
+| `notifications` | `notifications`, `notification_preferences`, `push_devices`, `audit_logs`                                                               |
 
 Son **34 tablas** de negocio más la tabla interna `migrations`.
 
@@ -244,19 +303,19 @@ npm run test:e2e
 Todas son obligatorias y no tienen valores por defecto en el código. El
 arranque falla con un mensaje claro si falta alguna o tiene un formato inválido.
 
-| Variable | Default | Descripción |
-| --- | --- | --- |
-| `NODE_ENV` | — | `development`, `test` o `production` |
-| `PORT` | — | Puerto HTTP de la API |
-| `CORS_ORIGIN` | — | Origen permitido por CORS (`*` o lista separada por comas) |
-| `DB_HOST` | — | Host de PostgreSQL |
-| `DB_PORT` | — | Puerto de PostgreSQL |
-| `DB_USERNAME` | — | Usuario de PostgreSQL |
-| `DB_PASSWORD` | — | Contraseña de PostgreSQL |
-| `DB_DATABASE` | — | Nombre de la base de datos |
-| `DB_SSL` | — | `true`/`false`, TLS para PostgreSQL gestionado |
-| `DB_LOGGING` | — | `true`/`false`, log de SQL de TypeORM |
-| `DB_MIGRATIONS_RUN` | — | `true`/`false`, ejecutar migraciones al arrancar |
+| Variable            | Default | Descripción                                                |
+| ------------------- | ------- | ---------------------------------------------------------- |
+| `NODE_ENV`          | —       | `development`, `test` o `production`                       |
+| `PORT`              | —       | Puerto HTTP de la API                                      |
+| `CORS_ORIGIN`       | —       | Origen permitido por CORS (`*` o lista separada por comas) |
+| `DB_HOST`           | —       | Host de PostgreSQL                                         |
+| `DB_PORT`           | —       | Puerto de PostgreSQL                                       |
+| `DB_USERNAME`       | —       | Usuario de PostgreSQL                                      |
+| `DB_PASSWORD`       | —       | Contraseña de PostgreSQL                                   |
+| `DB_DATABASE`       | —       | Nombre de la base de datos                                 |
+| `DB_SSL`            | —       | `true`/`false`, TLS para PostgreSQL gestionado             |
+| `DB_LOGGING`        | —       | `true`/`false`, log de SQL de TypeORM                      |
+| `DB_MIGRATIONS_RUN` | —       | `true`/`false`, ejecutar migraciones al arrancar           |
 
 `.env.example` documenta el formato y contiene valores de relleno, nunca
 credenciales reales.

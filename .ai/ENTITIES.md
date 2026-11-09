@@ -39,8 +39,10 @@ zones
   city_id         uuid NN FK -> cities
   name            text NN
   slug            text NN
+  postal_code     varchar(5)                    -- CP de SEPOMEX (d_codigo)
   is_active       boolean NN D=true
   UQ (city_id, slug)
+  INDEX (postal_code)
 
 amenities
   id              uuid PK

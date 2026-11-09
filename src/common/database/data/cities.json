@@ -1,0 +1,3302 @@
+{
+  "source": "CPdescarga.xml",
+  "generatedAt": "2026-11-09T05:43:59.905Z",
+  "total": 659,
+  "cities": [
+    {
+      "name": "Aguascalientes",
+      "stateName": "Aguascalientes",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Asientos",
+      "stateName": "Aguascalientes",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Calvillo",
+      "stateName": "Aguascalientes",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cosío",
+      "stateName": "Aguascalientes",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jesús María",
+      "stateName": "Aguascalientes",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Pabellón de Arteaga",
+      "stateName": "Aguascalientes",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Rincón de Romos",
+      "stateName": "Aguascalientes",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Francisco de los Romo",
+      "stateName": "Aguascalientes",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tepezalá",
+      "stateName": "Aguascalientes",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ensenada",
+      "stateName": "Baja California",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Mexicali",
+      "stateName": "Baja California",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Playas de Rosarito",
+      "stateName": "Baja California",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Rodolfo Sánchez Taboada (Maneadero)",
+      "stateName": "Baja California",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Felipe",
+      "stateName": "Baja California",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tecate",
+      "stateName": "Baja California",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tijuana",
+      "stateName": "Baja California",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cabo San Lucas",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Constitución",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Guerrero Negro",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Heroica Mulegé",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "La Paz",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Loreto",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Puerto Adolfo López Mateos",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Ignacio",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San José del Cabo",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santa Rosalía",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Todos Santos",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa Alberto Andrés Alvarado Arámburo",
+      "stateName": "Baja California Sur",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Bécal",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Calkini",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Candelaria",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Champotón",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad del Carmen",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Escárcega",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Hecelchakán",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Hopelchén",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Pomuch",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Sabancuy",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Francisco de Campeche",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tenabo",
+      "stateName": "Campeche",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Acala",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Arriaga",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cacahoatán",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chiapa de Corzo",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cintalapa de Figueroa",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Comitán de Domínguez",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huixtla",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jiquipilas",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Las Margaritas",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Las Rosas",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Mapastepec",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Motozintla de Mendoza",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ocosingo",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ocozocoautla de Espinosa",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Palenque",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Pichucalco",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Pijijiapan",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Puerto Madero (San Benito)",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Reforma",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Cristóbal de las Casas",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tapachula de Córdova y Ordóñez",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tonalá",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tuxtla Gutiérrez",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Venustiano Carranza",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villaflores",
+      "stateName": "Chiapas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Bachíniva",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chihuahua",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Colonia Anáhuac",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuauhtémoc",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Delicias",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Hidalgo del Parral",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "José Mariano Jiménez",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Juan Aldama",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Juárez",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Madera",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Manuel Ojinaga",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Nuevo Casas Grandes",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santa Rosalía de Camargo",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Saucillo",
+      "stateName": "Chihuahua",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad de México",
+      "stateName": "Ciudad de México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Allende",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Arteaga",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Castaños",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Acuña",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Melchor Múzquiz",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuatro Ciénegas de Carranza",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Francisco I. Madero (Chávez)",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Frontera",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Matamoros",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Monclova",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Morelos",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Nadadores",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Nava",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Nueva Rosita",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Parras de la Fuente",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Piedras Negras",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ramos Arizpe",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Sabinas",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Saltillo",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Buenaventura",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Pedro",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Torreón",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Viesca",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zaragoza",
+      "stateName": "Coahuila de Zaragoza",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad de Armería",
+      "stateName": "Colima",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad de Villa de Álvarez",
+      "stateName": "Colima",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Colima",
+      "stateName": "Colima",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Manzanillo",
+      "stateName": "Colima",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tecomán",
+      "stateName": "Colima",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Canatlán",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Lerdo",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "El Salto",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Francisco I. Madero",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Gómez Palacio",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Nombre de Dios",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Peñón Blanco",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Juan del Río del Centauro del Norte",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santa María del Oro",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santiago Papasquiaro",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Vicente Guerrero",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Victoria de Durango",
+      "stateName": "Durango",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Abasolo",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Acámbaro",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Apaseo el Alto",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Apaseo el Grande",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Celaya",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Manuel Doblado",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Comonfort",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cortazar",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuerámaro",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Doctor Mora",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Dolores Hidalgo Cuna de la Independencia Nacional",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Empalme Escobedo",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Guanajuato",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huanímaro",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Irapuato",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jaral del Progreso",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jerécuaro",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "León de los Aldama",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Marfil",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Moroleón",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Pénjamo",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Purísima de Bustos",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Rincón de Tamayo",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Romita",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Salamanca",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Salvatierra",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Diego de la Unión",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Francisco del Rincón",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San José Iturbide",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Luis de la Paz",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Miguel de Allende",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santa Cruz Juventino Rosas",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santiago Maravatío",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Silao",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tarandacuao",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Uriangato",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Valle de Santiago",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villagrán",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Yuriria",
+      "stateName": "Guanajuato",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Acapulco de Juárez",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Arcelia",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Atoyac de Álvarez",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ayutla de los Libres",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Azoyú",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Buenavista de Cuéllar",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chilapa de Álvarez",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chilpancingo de los Bravo",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Altamirano",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Apaxtla de Castrejón",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Copala",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Coyuca de Benítez",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Coyuca de Catalán",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cruz Grande",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuajinicuilapa",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cutzamala de Pinzón",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huamuxtitlán",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huitzuco",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Iguala de la Independencia",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "La Unión",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Marquelia",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ocotito",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Olinalá",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Petatlán",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Jerónimo de Juárez",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Luis Acatlán",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Luis de la Loma",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Luis San Pedro",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Marcos",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Taxco de Alarcón",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Técpan de Galeana",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Teloloapan",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tierra Colorada",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tixtla de Guerrero",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tlapa de Comonfort",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tlapehuala",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zihuatanejo",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zumpango del Río",
+      "stateName": "Guerrero",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Actopan",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Apan",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Fray Bernardino de Sahagún (Ciudad Sahagún)",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huejutla de Reyes",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ixmiquilpan",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Pachuca de Soto",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Miguel Vindho",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santiago Tulantepec",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tepeapulco",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tepeji del Río de Ocampo",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tizayuca",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tlaxcoapan",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tula de Allende",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tulancingo",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zimapán",
+      "stateName": "Hidalgo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Acatlán de Juárez",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ahualulco de Mercado",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ajijic",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ameca",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Arandas",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Atotonilco el Alto",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Autlán de Navarro",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chapala",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cihuatlán",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Guzmán",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cocula",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Colotlán",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "El Grullo",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "El Quince (San José el Quince)",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "El Salto",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Etzatlán",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Guadalajara",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huejuquilla el Alto",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jalostotitlán",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jamay",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jocotepec",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "La Barca",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "La Resolana",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Lagos de Moreno",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Las Pintitas",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Magdalena",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ocotlán",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Poncitlán",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Puerto Vallarta",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Diego de Alejandría",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Ignacio Cerro Gordo",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San José el Verde (El Verde)",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Juan de los Lagos",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Julián",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Miguel el Alto",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Sayula",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tala",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Talpa de Allende",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tamazula de Gordiano",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tecalitlán",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Teocaltiche",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tepatitlán de Morelos",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tequila",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tlajomulco de Zúñiga",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tlaquepaque",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tonalá",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tototlán",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tuxpan",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Unión de San Antonio",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Valle de Guadalupe",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa Corona",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa Hidalgo",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa Purificación",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Yahualica de González Gallo",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zacoalco de Torres",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zapopan",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zapotiltic",
+      "stateName": "Jalisco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Almoloya de Juárez",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Amatepec",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Capulhuac",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chalco de Díaz Covarrubias",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chicoloapan de Juárez",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chiconcuac",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chimalhuacán",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Adolfo López Mateos",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Nezahualcóyotl",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Nicolás Romero",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Coacalco de Berriozabal",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuautitlán",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuautitlán Izcalli",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ecatepec de Morelos",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huixquilucan de Degollado",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ixtapaluca",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Juchitepec de Mariano Rivapalacio",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Los Reyes Acaquilpan (La Paz)",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Melchor Ocampo",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Metepec",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Naucalpan de Juárez",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ocoyoacac",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Mateo Atenco",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santa Maria Tultepec",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tecámac de Felipe Villanueva",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tejupilco de Hidalgo",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tepotzotlán",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tequixquiac",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Texcoco de Mora",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tlalnepantla de Baz",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Toluca de Lerdo",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tultitlán de Mariano Escobedo",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Valle de Chalco Solidaridad",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Xonacatlán",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zumpango",
+      "stateName": "México",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Apatzingán de la Constitución",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Hidalgo",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Lázaro Cárdenas",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cotija de la Paz",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuitzeo del Porvenir",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Heróica Zitácuaro",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huetamo de Núñez",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jacona de Plancarte",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jiquilpan de Juárez",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "La Piedad de Cabadas",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Las Guacamayas",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Los Reyes de Salgado",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Maravatío de Ocampo",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Morelia",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Nueva Italia de Ruiz",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Paracho de Verduzco",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Pátzcuaro",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Puruándiro",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Sahuayo de Morelos",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tacámbaro de Codallos",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tangancícuaro de Arista",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tuxpan",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Uruapan",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Yurécuaro",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zacapu",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zamora de Hidalgo",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zinapécuaro de Figueroa",
+      "stateName": "Michoacán de Ocampo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuautla",
+      "stateName": "Morelos",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuernavaca",
+      "stateName": "Morelos",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Galeana",
+      "stateName": "Morelos",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jiutepec",
+      "stateName": "Morelos",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jojutla",
+      "stateName": "Morelos",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Puente de Ixtla",
+      "stateName": "Morelos",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santa Rosa Treinta",
+      "stateName": "Morelos",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Temixco",
+      "stateName": "Morelos",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tlaquiltenango",
+      "stateName": "Morelos",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Yautepec de Zaragoza",
+      "stateName": "Morelos",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zacatepec de Hidalgo",
+      "stateName": "Morelos",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Acaponeta",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ahuacatlán",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Bucerías",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Compostela",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Francisco I. Madero (Puga)",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ixtlán del Río",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jala",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "La Peñita de Jaltemba",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Las Varas",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ruíz",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Blas",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Pedro Lagunillas",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santiago Ixcuintla",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tecuala",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tepic",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tuxpan",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa Hidalgo (El Nuevo)",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Xalisco",
+      "stateName": "Nayarit",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Anáhuac",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cadereyta Jiménez",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciénega de Flores",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Apodaca",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Benito Juárez",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad General Escobedo",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Sabinas Hidalgo",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Santa Catarina",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Doctor Arroyo",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "El cercado",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "García",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Guadalupe",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Hualahuises",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Linares",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Montemorelos",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Monterrey",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Salinas Victoria",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Nicolás de los Garza",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Pedro Garza García",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santiago",
+      "stateName": "Nuevo León",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Asunción Nochixtlán",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Bahias de Huatulco",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chahuites",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Ixtepec",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cosolapa",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuilápam de Guerrero",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "El Camarón",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "El Rosario",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Heroica Ciudad de Ejutla de Crespo",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Heroica Ciudad de Huajuapan de León",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Heroica Ciudad de Tlaxiaco",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Juchitán (Juchitán de Zaragoza)",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Lagunas",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Loma Bonita",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Mariscala de Juárez",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Matías Romero Avendaño",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Miahuatlán de Porfirio Díaz",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Natividad",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Oaxaca de Juárez",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ocotlán de Morelos",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Puerto Escondido",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Putla Villa de Guerrero",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Río Grande o Piedra Parada",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Salina Cruz",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Antonio de la Cal",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Blas Atempa",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Felipe Jalapa de Díaz",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Francisco Ixhuatán",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Francisco Telixtlahuaca",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Juan Bautista Cuicatlán",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Juan Bautista Lo de Soto",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Juan Bautista Tuxtepec",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Juan Bautista Valle Nacional",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Juan Cacahuatepec",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Miguel el Grande",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Pablo Huitzo",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Pablo Villa de Mitla",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Pedro Mixtepec Distrito 22",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Pedro Pochutla",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Pedro Tapanatepec",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Pedro Totolápam",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Sebastián Tecomaxtlahuaca",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santa Cruz Itundujia",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santa Lucía del Camino",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santa María Huatulco",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santiago Jamiltepec",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santiago Juxtlahuaca",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santiago Pinotepa Nacional",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santiago Suchilquitongo",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santo Domingo Tehuantepec",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Teotitlán de Flores Magón",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tlacolula de Matamoros",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Unión Hidalgo",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Vicente Camalote",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa de Tamazulápam del Progreso",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa de Zaachila",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa Sola de Vega",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zimatlán de Álvarez",
+      "stateName": "Oaxaca",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Acatlán de Osorio",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Amozoc",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Atlixco",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Serdán",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuautlancingo",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Heroica Puebla de Zaragoza",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huauchinango",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Izúcar de Matamoros",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Andrés Cholula",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Martín Texmelucan de Labastida",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Pedro Cholula",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tecamachalco",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tehuacán",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tepeaca",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Teziutlán",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Xicotepec",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zacatlán",
+      "stateName": "Puebla",
+      "countryCode": "MX"
+    },
+    {
+      "name": "El Pueblito",
+      "stateName": "Querétaro",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Juan del Rio",
+      "stateName": "Querétaro",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santiago de Querétaro",
+      "stateName": "Querétaro",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Bacalar",
+      "stateName": "Quintana Roo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cancún",
+      "stateName": "Quintana Roo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chetumal",
+      "stateName": "Quintana Roo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cozumel",
+      "stateName": "Quintana Roo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Felipe Carrillo Puerto",
+      "stateName": "Quintana Roo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Isla Mujeres",
+      "stateName": "Quintana Roo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Kantunilkín",
+      "stateName": "Quintana Roo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Playa del Carmen",
+      "stateName": "Quintana Roo",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cárdenas",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cedral",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cerritos",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Charcas",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad del Maíz",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Fernández",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Valles",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ébano",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "El Naranjo",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Matehuala",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Rioverde",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Salinas de Hidalgo",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Luis Potosí",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santa María del Río",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Soledad de Graciano Sánchez",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tamasopo",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tamazunchale",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tamuín",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tierra Nueva",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa de Pozos",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa de Reyes",
+      "stateName": "San Luis Potosí",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ahome",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Angostura",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Choix",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cosalá",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Culiacán Rosales",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "El Rosario",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Escuinapa de Hidalgo",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Estación Naranjo",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Guamúchil",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Guasave",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Higuera de Zaragoza",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "La Cruz",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Licenciado Benito Juárez (Campo Gobierno)",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Los Mochis",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Mazatlán",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Mocorito",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Navolato",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Quilá",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Blas",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Ignacio",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Sinaloa de Leyva",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Topolobampo",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa Unión",
+      "stateName": "Sinaloa",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Agua Prieta",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Obregón",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Empalme",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Hermosillo",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Heroica Caborca",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Heroica Ciudad de Cananea",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Heroica Guaymas",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Heroica Nogales",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huatabampo",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Magdalena de Kino",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Navojoa",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Puerto Peñasco",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Luis Río Colorado",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Sonoyta",
+      "stateName": "Sonora",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cárdenas",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Comalcalco",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cunduacán",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Emiliano Zapata",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Frontera",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huimanguillo",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jalpa de Méndez",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Macuspana",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Paraíso",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Teapa",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tenosique de Pino Suárez",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villahermosa",
+      "stateName": "Tabasco",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Altamira",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Camargo",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Gustavo Díaz Ordaz",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Madero",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Mante",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Miguel Alemán",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Río Bravo",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Tula",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Victoria",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Estación Manuel (Úrsulo Galván)",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "González",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Heroica Matamoros",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jaumave",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Nueva Ciudad Guerrero",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Nuevo Laredo",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Reynosa",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Fernando",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Soto la Marina",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tampico",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Valle Hermoso",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Xicoténcatl",
+      "stateName": "Tamaulipas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Apizaco",
+      "stateName": "Tlaxcala",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Calpulalpan",
+      "stateName": "Tlaxcala",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Chiautempan",
+      "stateName": "Tlaxcala",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huamantla",
+      "stateName": "Tlaxcala",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tlaxcala de Xicohténcatl",
+      "stateName": "Tlaxcala",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa Vicente Guerrero",
+      "stateName": "Tlaxcala",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Acayucan",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Agua Dulce",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Álamo",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Altotonga",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Alvarado",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ángel R. Cabada",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Atoyac",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Banderilla",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Boca del Río",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Carlos A. Carrillo",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Catemaco",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cazones de Herrera",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cerro Azul",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Coatepec",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Coatzacoalcos",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Coatzintla",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Córdoba",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cosamaloapan",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cosoleacaque",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuichapa",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Cuitláhuac",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "El Higo",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Fortín de las Flores",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "General Miguel Alemán (Potrero Nuevo)",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Gutiérrez Zamora",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huatusco de Chicuellar",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huayacocotla",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Huiloapan de Cuauhtémoc",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Isla",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ixtaczoquitlán",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jáltipan de Morelos",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "José Cardel",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Juan Díaz Covarrubias",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Juan Rodríguez Clara",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Las Choapas",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Lerdo de Tejada",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Martínez de la Torre",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Minatitlán",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Naranjos",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Nogales",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Orizaba",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Pánuco",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Papantla de Olarte",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Paraje Nuevo",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Paso de Ovejas",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Paso del Macho",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Perote",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Platón Sánchez",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Playa Vicente",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Poza Rica de Hidalgo",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Río Blanco",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Andrés Tuxtla",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "San Rafael",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Santiago Tuxtla",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Sihuapan",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Soledad de Doblado",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tampico Alto",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tantoyuca",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tempoal de Sánchez",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tezonapa",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tierra Blanca",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tihuatlán",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tlacojalpan",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tlapacoyan",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tres Valles",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Túxpam de Rodríguez Cano",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Veracruz",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Xalapa-Enríquez",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Yecuatla",
+      "stateName": "Veracruz de Ignacio de la Llave",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Kanasín",
+      "stateName": "Yucatán",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Mérida",
+      "stateName": "Yucatán",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Motul de Carrillo Puerto",
+      "stateName": "Yucatán",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Progreso",
+      "stateName": "Yucatán",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ticul",
+      "stateName": "Yucatán",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Tizimín",
+      "stateName": "Yucatán",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Valladolid",
+      "stateName": "Yucatán",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ciudad Cuauhtémoc",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Fresnillo",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Guadalupe",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jalpa",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Jerez de García Salinas",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Juan Aldama",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Loreto",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Luis Moya",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Moyahua de Estrada",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Nochistlán de Mejía",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Ojocaliente",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Río Grande",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Sombrerete",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Valparaíso",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Víctor Rosales",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa de Cos",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villa Hidalgo",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Villanueva",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    },
+    {
+      "name": "Zacatecas",
+      "stateName": "Zacatecas",
+      "countryCode": "MX"
+    }
+  ]
+}

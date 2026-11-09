@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  Index,
-  PrimaryGeneratedColumn,
-  Unique,
-} from 'typeorm';
+import { Column, Entity, Index, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity('zones')
 @Unique('uq_zones_city_slug', ['cityId', 'slug'])
@@ -21,6 +15,10 @@ export class Zone {
 
   @Column({ type: 'text' })
   slug: string;
+
+  @Index('idx_zones_postal_code')
+  @Column({ type: 'varchar', length: 5, nullable: true })
+  postalCode: string | null;
 
   @Column({ type: 'boolean', default: true })
   isActive: boolean;
