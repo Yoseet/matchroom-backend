@@ -1,4 +1,4 @@
-# MatchRoom Backend
+gi# MatchRoom Backend
 
 Backend del MVP de MatchRoom construido con **NestJS + TypeORM + PostgreSQL**,
 organizado por dominios (DDD ligero) y con el esquema de base de datos versionado
