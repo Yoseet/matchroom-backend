@@ -10,7 +10,10 @@ export type {
 } from './lifestyle-profile.entity.js';
 export { Profile } from './profile.entity.js';
 export type { LookingFor } from './profile.entity.js';
-export { RoommatePreference } from './roommate-preference.entity.js';
+export {
+  EXCLUSIVE_CRITERIA,
+  RoommatePreference,
+} from './roommate-preference.entity.js';
 export type {
   ExclusiveCriterion,
   PolicyPreference,

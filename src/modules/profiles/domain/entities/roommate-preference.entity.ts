@@ -5,6 +5,7 @@ import {
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import type { VisitsFrequency } from './lifestyle-profile.entity.js';
 
 export type PolicyPreference = 'accept' | 'reject' | 'indifferent';
 
@@ -59,7 +60,7 @@ export class RoommatePreference {
   maxNoiseLevel: number | null;
 
   @Column({ type: 'text', nullable: true })
-  maxVisitsFrequency: string | null;
+  maxVisitsFrequency: VisitsFrequency | null;
 
   @Column({ type: 'smallint', nullable: true })
   minCleanlinessLevel: number | null;
