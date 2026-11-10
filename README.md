@@ -142,6 +142,41 @@ La API se documenta con **OpenAPI 3** y **Swagger UI** mediante
 - `test/swagger.e2e-spec.ts` verifica que el documento JSON y la interfaz se
   sirvan correctamente.
 
+## Módulo de propiedades
+
+El módulo `properties` implementa la búsqueda, publicación y gestión de
+anuncios, además de favoritos y contactos derivados de conversaciones de renta.
+Las fotografías (`property_photos`) no se modificaron en esta iteración.
+
+| Método | Endpoint | Descripción |
+| --- | --- | --- |
+| `GET` | `/api/v1/properties` | Búsqueda de anuncios `active` con filtros y cursor. |
+| `GET` | `/api/v1/properties/map` | Marcadores con ubicación pública, sin dirección ni punto exactos. |
+| `GET` | `/api/v1/properties/me` | Anuncios propios, filtrables por estado. |
+| `POST` | `/api/v1/properties` | Crea un anuncio en `draft`. |
+| `GET` | `/api/v1/properties/:propertyId` | Detalle; la ubicación exacta solo se expone al propietario o a un interesado con conversación `rental` activa. |
+| `PATCH` | `/api/v1/properties/:propertyId` | Edita un anuncio propio. |
+| `PUT` | `/api/v1/properties/:propertyId/amenities` | Reemplaza las amenidades del anuncio. |
+| `POST` | `/api/v1/properties/:propertyId/submit-review` | Valida el anuncio y lo pasa a `in_review`. |
+| `PATCH` | `/api/v1/properties/:propertyId/status` | Reserva, renta, pausa o reactiva según las transiciones permitidas. |
+| `DELETE` | `/api/v1/properties/:propertyId` | Eliminación lógica con historial. |
+| `PUT` | `/api/v1/properties/:propertyId/favorite` | Agrega el anuncio a favoritos (idempotente). |
+| `DELETE` | `/api/v1/properties/:propertyId/favorite` | Quita el favorito propio. |
+| `GET` | `/api/v1/properties/me/favorites` | Favoritos propios; excluye eliminados y marca `isAvailable`. |
+| `GET` | `/api/v1/properties/:propertyId/contacts` | Contactos derivados de conversaciones `rental` del anuncio. |
+
+Filtros de búsqueda disponibles: `cityId`, `zoneIds`, `minPrice`, `maxPrice`,
+`type`, `bedrooms`, `bathrooms`, `furnished`, `availableFrom`, `amenityIds`,
+`sort` (`newest`, `price_asc`, `price_desc`), `cursor` y `limit`.
+
+### Identidad temporal sin módulo de autenticación
+
+Mientras `accounts/auth` no esté implementado, los endpoints que requieren
+usuario leen el UUID desde el header `x-user-id`. Es un transporte temporal:
+las reglas de propiedad (propietario, identidad verificada, modo arrendador,
+favoritos y contactos) sí se validan en los servicios. Cuando llegue la
+autenticación JWT, los controllers deben migrar a `@CurrentUser()`.
+
 ## Estructura
 
 ```text
@@ -287,6 +322,9 @@ y devuelven `(lng,lat)`.
   `/api/v1/health`, verifica las 34 tablas, el número de entidades registradas,
   que las columnas sensibles queden fuera del SELECT por defecto y que las
   restricciones clave (email `citext`, orden de `matches`) se apliquen.
+- Integración de propiedades: `test/properties.e2e-spec.ts` cubre búsqueda,
+  mapa, visibilidad de ubicación, ciclo de borrador/revisión/estado,
+  favoritos, contactos y eliminación lógica.
 - Contrato OpenAPI: `test/swagger.e2e-spec.ts` valida el documento JSON, el
   esquema Bearer y que Swagger UI esté disponible.
 

@@ -14,6 +14,13 @@ describe('pointTransformer', () => {
     });
   });
 
+  it('parses the object returned by node-postgres', () => {
+    expect(pointTransformer.from!({ x: -99.1332, y: 19.4326 })).toEqual({
+      longitude: -99.1332,
+      latitude: 19.4326,
+    });
+  });
+
   it('accepts scientific notation returned by PostgreSQL', () => {
     expect(pointTransformer.from!('(1e-05,-2.5e+01)')).toEqual({
       longitude: 0.00001,
