@@ -30,6 +30,9 @@ createdb -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USERNAME" matchroom
 # 4. Aplicar migraciones
 npm run migration:run
 
+# 4.1 aplicar seeders
+npm run seed
+
 # 5. Levantar la API
 npm run start:dev
 ```
