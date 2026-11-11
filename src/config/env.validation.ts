@@ -19,6 +19,9 @@ export interface Environment {
   DB_SSL: boolean;
   DB_LOGGING: boolean;
   DB_MIGRATIONS_RUN: boolean;
+  SESSION_COOKIE_NAME: string;
+  SESSION_TTL_HOURS: number;
+  GOOGLE_CLIENT_ID: string | null;
 }
 
 function required(
@@ -64,6 +67,42 @@ function toNodeEnvironment(config: Record<string, unknown>): NodeEnvironment {
   return value as NodeEnvironment;
 }
 
+function optional(config: Record<string, unknown>, name: keyof Environment): string | null {
+  const value = config[name];
+  return typeof value === 'string' && value.trim() !== '' ? value.trim() : null;
+}
+
+function toCorsOrigins(config: Record<string, unknown>): string {
+  const origins = required(config, 'CORS_ORIGIN')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
+  if (!origins.length || origins.includes('*')) {
+    throw new Error('CORS_ORIGIN must contain one or more explicit origins, never "*"');
+  }
+
+  for (const origin of origins) {
+    let parsed: URL;
+    try {
+      parsed = new URL(origin);
+    } catch {
+      throw new Error(`CORS_ORIGIN contains an invalid origin: ${origin}`);
+    }
+    if (parsed.origin !== origin) {
+      throw new Error(`CORS_ORIGIN must use canonical origins without paths: ${origin}`);
+    }
+  }
+  return origins.join(',');
+}
+
+function toPositiveInteger(config: Record<string, unknown>, name: 'SESSION_TTL_HOURS', fallback: number): number {
+  const raw = optional(config, name);
+  const value = raw ? Number(raw) : fallback;
+  if (!Number.isInteger(value) || value < 1 || value > 24 * 90) throw new Error(`${name} must be an integer between 1 and ${24 * 90}`);
+  return value;
+}
+
 /**
  * Validates and types the raw environment. It fails fast so the application
  * never starts with a partial or invalid configuration.
@@ -74,7 +113,7 @@ export function validateEnvironment(
   return {
     NODE_ENV: toNodeEnvironment(config),
     PORT: toPort(config, 'PORT'),
-    CORS_ORIGIN: required(config, 'CORS_ORIGIN'),
+    CORS_ORIGIN: toCorsOrigins(config),
 
     DB_HOST: required(config, 'DB_HOST'),
     DB_PORT: toPort(config, 'DB_PORT'),
@@ -84,5 +123,8 @@ export function validateEnvironment(
     DB_SSL: toBoolean(config, 'DB_SSL'),
     DB_LOGGING: toBoolean(config, 'DB_LOGGING'),
     DB_MIGRATIONS_RUN: toBoolean(config, 'DB_MIGRATIONS_RUN'),
+    SESSION_COOKIE_NAME: optional(config, 'SESSION_COOKIE_NAME') ?? 'matchroom_session',
+    SESSION_TTL_HOURS: toPositiveInteger(config, 'SESSION_TTL_HOURS', 168),
+    GOOGLE_CLIENT_ID: optional(config, 'GOOGLE_CLIENT_ID'),
   };
 }
