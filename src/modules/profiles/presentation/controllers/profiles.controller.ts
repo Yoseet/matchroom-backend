@@ -8,19 +8,19 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiConflictResponse,
   ApiCreatedResponse,
-  ApiHeader,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
   ApiTags,
-  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { CurrentUserId, USER_ID_HEADER } from '../../../../common/auth/index.js';
+import { CurrentUserId } from '../../../../common/auth/index.js';
+import { SessionGuard } from '../../../accounts/presentation/guards/session.guard.js';
 import { ListProfilesQueryDto } from '../../application/dto/list-profiles-query.dto.js';
 import { ProfileCompletenessResponseDto } from '../../application/dto/profile-completeness-response.dto.js';
 import {
@@ -51,17 +51,8 @@ import { ProfilesService } from '../../application/services/profiles.service.js'
 import { PublicProfilesService } from '../../application/services/public-profiles.service.js';
 
 @ApiTags('profiles')
-@ApiHeader({
-  name: USER_ID_HEADER,
-  required: true,
-  description:
-    'Identificador del usuario autenticado. Es temporal mientras se integra ' +
-    'el módulo de autenticación.',
-})
-@ApiUnauthorizedResponse({
-  description: `Falta el header ${USER_ID_HEADER} o no es un UUID válido.`,
-})
 @Controller('profiles')
+@UseGuards(SessionGuard)
 export class ProfilesController {
   constructor(
     private readonly profilesService: ProfilesService,

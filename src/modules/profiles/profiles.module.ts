@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProfileCompletenessService } from './application/services/profile-completeness.service.js';
 import { ProfilesService } from './application/services/profiles.service.js';
@@ -12,6 +12,7 @@ import {
   UserPreferredZone,
 } from './domain/entities/index.js';
 import { ProfilesController } from './presentation/controllers/profiles.controller.js';
+import { AccountsModule } from '../accounts/accounts.module.js';
 
 /**
  * Profiles bounded context: public profile plus lifestyle, roommate and
@@ -19,6 +20,7 @@ import { ProfilesController } from './presentation/controllers/profiles.controll
  */
 @Module({
   imports: [
+    forwardRef(() => AccountsModule),
     TypeOrmModule.forFeature([
       Profile,
       LifestyleProfile,

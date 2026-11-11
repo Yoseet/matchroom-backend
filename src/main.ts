@@ -18,11 +18,16 @@ async function bootstrap() {
   );
   app.useGlobalFilters(new DatabaseExceptionFilter());
 
+  const corsOrigins = env.CORS_ORIGIN.split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
   app.enableCors({
-    origin:
-      env.CORS_ORIGIN === '*'
-        ? true
-        : env.CORS_ORIGIN.split(',').map((origin) => origin.trim()),
+    // Cookies require a concrete origin; never use a wildcard with credentials.
+    origin: corsOrigins,
+    credentials: true,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   });
   app.enableShutdownHooks();
 
