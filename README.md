@@ -121,8 +121,10 @@ curl "http://localhost:3000/api/v1/catalog/amenities?page=1&pageSize=50"
 curl "http://localhost:3000/api/v1/catalog/autocomplete?q=roma&type=all"
 ```
 
-Por ahora estos endpoints son públicos; cuando se integre el guard JWT global
-deberán marcarse con `@Public()`.
+Estos endpoints son públicos y no hay un guard global de autenticación: cada
+controller protegido declara `SessionGuard`. Si más adelante se añade un guard
+global, el catálogo y el resto de rutas públicas deberán marcarse con
+`@Public()`.
 
 ## Documentación de la API
 
@@ -136,8 +138,9 @@ La API se documenta con **OpenAPI 3** y **Swagger UI** mediante
 
 - La documentación se registra desde `src/config/swagger.ts` y **se desactiva
   automáticamente cuando `NODE_ENV=production`**.
-- Incluye el esquema de autenticación Bearer (`access-token`) para los
-  endpoints protegidos.
+- Incluye el esquema de autenticación por cookie de sesión (`session-cookie`,
+  `SESSION_COOKIE_NAME`) y conserva el esquema Bearer (`access-token`) para
+  clientes que lo necesiten más adelante.
 - El plugin de Swagger está activado en `nest-cli.json`, de modo que las
   propiedades de los DTOs se documentan sin repetir `@ApiProperty` en cada
   campo cuando el proyecto se compila con Nest CLI.

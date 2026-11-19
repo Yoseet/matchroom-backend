@@ -32,8 +32,16 @@ export function setupSwagger(app: INestApplication): void {
       },
       'access-token',
     )
+    // The accounts module authenticates with an httpOnly cookie, so the UI can
+    // reuse the session created by /auth/login instead of a bearer token.
+    .addCookieAuth(
+      env.SESSION_COOKIE_NAME,
+      { type: 'apiKey', in: 'cookie' },
+      'session-cookie',
+    )
     .addTag('health', 'Estado del servicio y de la base de datos')
     .addTag('catalog', 'Ciudades, zonas y búsqueda de catálogos')
+    .addTag('auth', 'Registro, sesiones y cuenta')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
