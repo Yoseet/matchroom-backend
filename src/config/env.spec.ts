@@ -35,6 +35,9 @@ describe('validateEnvironment', () => {
       DB_SSL: true,
       DB_LOGGING: false,
       DB_MIGRATIONS_RUN: false,
+      SESSION_COOKIE_NAME: 'matchroom_session',
+      SESSION_TTL_HOURS: 168,
+      GOOGLE_CLIENT_ID: null,
     });
   });
 
@@ -70,5 +73,11 @@ describe('validateEnvironment', () => {
     expect(() =>
       validateEnvironment({ ...validEnvironment, NODE_ENV: 'staging' }),
     ).toThrow(/NODE_ENV/);
+  });
+
+  it('rejects a wildcard CORS origin when cookies are enabled', () => {
+    expect(() =>
+      validateEnvironment({ ...validEnvironment, CORS_ORIGIN: '*' }),
+    ).toThrow(/CORS_ORIGIN/);
   });
 });
