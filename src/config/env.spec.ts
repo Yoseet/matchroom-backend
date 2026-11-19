@@ -36,8 +36,17 @@ describe('validateEnvironment', () => {
       DB_LOGGING: false,
       DB_MIGRATIONS_RUN: false,
       SESSION_COOKIE_NAME: 'matchroom_session',
+      SESSION_COOKIE_SAME_SITE: 'lax',
+      SESSION_COOKIE_SECURE: false,
       SESSION_TTL_HOURS: 168,
       GOOGLE_CLIENT_ID: null,
+      APP_PUBLIC_URL: 'http://localhost:5173',
+      MAIL_FROM: null,
+      SMTP_HOST: null,
+      SMTP_PORT: null,
+      SMTP_SECURE: false,
+      SMTP_USER: null,
+      SMTP_PASSWORD: null,
     });
   });
 

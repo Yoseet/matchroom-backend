@@ -8,7 +8,9 @@ import {
   UserSession,
 } from './domain/entities/index.js';
 import { ProfilesModule } from '../profiles/profiles.module.js';
+import { AccountsMaintenanceService } from './application/services/accounts-maintenance.service.js';
 import { AuthService } from './application/services/auth.service.js';
+import { MailService } from './application/services/mail.service.js';
 import { AuthController } from './presentation/controllers/auth.controller.js';
 import { AuthRateLimitGuard } from './presentation/guards/auth-rate-limit.guard.js';
 import { SessionGuard } from './presentation/guards/session.guard.js';
@@ -29,7 +31,13 @@ import { SessionGuard } from './presentation/guards/session.guard.js';
     ]),
   ],
   controllers: [AuthController],
-  providers: [AuthService, AuthRateLimitGuard, SessionGuard],
-  exports: [AuthService, SessionGuard],
+  providers: [
+    AuthService,
+    MailService,
+    AccountsMaintenanceService,
+    AuthRateLimitGuard,
+    SessionGuard,
+  ],
+  exports: [AuthService, AccountsMaintenanceService, SessionGuard],
 })
 export class AccountsModule {}

@@ -20,8 +20,18 @@ export interface Environment {
   DB_LOGGING: boolean;
   DB_MIGRATIONS_RUN: boolean;
   SESSION_COOKIE_NAME: string;
+  SESSION_COOKIE_SAME_SITE: 'lax' | 'strict' | 'none';
+  SESSION_COOKIE_SECURE: boolean;
   SESSION_TTL_HOURS: number;
   GOOGLE_CLIENT_ID: string | null;
+
+  APP_PUBLIC_URL: string;
+  MAIL_FROM: string | null;
+  SMTP_HOST: string | null;
+  SMTP_PORT: number | null;
+  SMTP_SECURE: boolean;
+  SMTP_USER: string | null;
+  SMTP_PASSWORD: string | null;
 }
 
 function required(
@@ -96,6 +106,69 @@ function toCorsOrigins(config: Record<string, unknown>): string {
   return origins.join(',');
 }
 
+function toPublicUrl(config: Record<string, unknown>): string {
+  const raw = optional(config, 'APP_PUBLIC_URL') ?? 'http://localhost:5173';
+  let parsed: URL;
+  try {
+    parsed = new URL(raw);
+  } catch {
+    throw new Error('APP_PUBLIC_URL must be a valid absolute URL');
+  }
+  return parsed.origin;
+}
+
+function toOptionalPort(
+  config: Record<string, unknown>,
+  name: 'SMTP_PORT',
+  fallback: number | null,
+): number | null {
+  const raw = optional(config, name);
+  if (!raw) return fallback;
+  const port = Number(raw);
+  if (!Number.isInteger(port) || port < 1 || port > 65535) {
+    throw new Error(`${name} must be an integer between 1 and 65535`);
+  }
+  return port;
+}
+
+function toOptionalBoolean(
+  config: Record<string, unknown>,
+  name: 'SMTP_SECURE',
+  fallback: boolean,
+): boolean {
+  const raw = optional(config, name);
+  if (!raw) return fallback;
+  const value = raw.toLowerCase();
+  if (value !== 'true' && value !== 'false') {
+    throw new Error(`${name} must be either "true" or "false"`);
+  }
+  return value === 'true';
+}
+
+function toSameSite(
+  config: Record<string, unknown>,
+): 'lax' | 'strict' | 'none' {
+  const raw = (optional(config, 'SESSION_COOKIE_SAME_SITE') ?? 'lax').toLowerCase();
+  if (raw !== 'lax' && raw !== 'strict' && raw !== 'none') {
+    throw new Error('SESSION_COOKIE_SAME_SITE must be lax, strict or none');
+  }
+  return raw;
+}
+
+function toBooleanWithFallback(
+  config: Record<string, unknown>,
+  name: 'SESSION_COOKIE_SECURE',
+  fallback: boolean,
+): boolean {
+  const raw = optional(config, name);
+  if (!raw) return fallback;
+  const value = raw.toLowerCase();
+  if (value !== 'true' && value !== 'false') {
+    throw new Error(`${name} must be either "true" or "false"`);
+  }
+  return value === 'true';
+}
+
 function toPositiveInteger(config: Record<string, unknown>, name: 'SESSION_TTL_HOURS', fallback: number): number {
   const raw = optional(config, name);
   const value = raw ? Number(raw) : fallback;
@@ -124,7 +197,21 @@ export function validateEnvironment(
     DB_LOGGING: toBoolean(config, 'DB_LOGGING'),
     DB_MIGRATIONS_RUN: toBoolean(config, 'DB_MIGRATIONS_RUN'),
     SESSION_COOKIE_NAME: optional(config, 'SESSION_COOKIE_NAME') ?? 'matchroom_session',
+    SESSION_COOKIE_SAME_SITE: toSameSite(config),
+    SESSION_COOKIE_SECURE: toBooleanWithFallback(
+      config,
+      'SESSION_COOKIE_SECURE',
+      required(config, 'NODE_ENV') === 'production',
+    ),
     SESSION_TTL_HOURS: toPositiveInteger(config, 'SESSION_TTL_HOURS', 168),
     GOOGLE_CLIENT_ID: optional(config, 'GOOGLE_CLIENT_ID'),
+
+    APP_PUBLIC_URL: toPublicUrl(config),
+    MAIL_FROM: optional(config, 'MAIL_FROM'),
+    SMTP_HOST: optional(config, 'SMTP_HOST'),
+    SMTP_PORT: toOptionalPort(config, 'SMTP_PORT', null),
+    SMTP_SECURE: toOptionalBoolean(config, 'SMTP_SECURE', false),
+    SMTP_USER: optional(config, 'SMTP_USER'),
+    SMTP_PASSWORD: optional(config, 'SMTP_PASSWORD'),
   };
 }
