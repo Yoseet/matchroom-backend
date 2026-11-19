@@ -1,4 +1,4 @@
-gi# MatchRoom Backend
+# MatchRoom Backend
 
 Backend del MVP de MatchRoom construido con **NestJS + TypeORM + PostgreSQL**,
 organizado por dominios (DDD ligero) y con el esquema de base de datos versionado
@@ -70,6 +70,7 @@ escritos en el código.
 | `npm run seed:cities`                                               | Carga solo las ciudades                                     |
 | `npm run seed:zones`                                                | Carga solo las zonas                                        |
 | `npm run seed:amenities`                                            | Carga las amenidades básicas                                |
+| `npm run accounts:purge`                                            | Anonimiza cuentas cuyo plazo de eliminación venció          |
 
 ## Catálogo de ciudades y zonas (SEPOMEX)
 
@@ -145,6 +146,131 @@ La API se documenta con **OpenAPI 3** y **Swagger UI** mediante
 - `test/swagger.e2e-spec.ts` verifica que el documento JSON y la interfaz se
   sirvan correctamente.
 
+## Módulo de cuentas y autenticación
+
+El módulo `accounts` cubre el ciclo de vida de la cuenta: registro, inicio de
+sesión con contraseña o Google, sesiones, verificación de correo, recuperación
+de contraseña, aceptación legal, cambio de modo, activación de arrendador y
+eliminación diferida.
+
+### Sesión por cookie
+
+- El registro, el login y Google crean una sesión y entregan el token en una
+  cookie `httpOnly` (`SESSION_COOKIE_NAME`, por defecto `matchroom_session`).
+  El cliente no guarda el token ni envía `Authorization`.
+- El token es opaco (32 bytes aleatorios en base64url) y la base solo guarda su
+  hash SHA-256 en `user_sessions.refresh_token_hash`. La misma cookie funciona
+  como refresh token.
+- `POST /auth/refresh` **rota** la sesión: revoca la anterior y crea una nueva.
+  Un token revocado deja de servir de inmediato.
+- La cookie es `SameSite` por diseño. En desarrollo, la página y la API deben
+  usar el mismo host (`localhost` con `localhost`, o `127.0.0.1` con
+  `127.0.0.1`); si se mezclan, el navegador no envía la cookie. En producción,
+  con dominios distintos, usa `SESSION_COOKIE_SAME_SITE=none` +
+  `SESSION_COOKIE_SECURE=true` (requiere HTTPS) o publica la API bajo el mismo
+  dominio con un proxy `/api`.
+- `CORS_ORIGIN` exige orígenes explícitos y la API habilita credenciales; `*`
+  se rechaza al arrancar.
+
+### Endpoints
+
+Todas las rutas viven bajo `/api/v1`. «Sesión» indica si requieren la cookie.
+
+| Método   | Ruta                   | Sesión | Descripción                                                              | Respuestas      |
+| -------- | ---------------------- | ------ | ------------------------------------------------------------------------ | --------------- |
+| `POST`   | `/auth/register`       | No     | Crea la cuenta, el perfil inicial, la privacidad y las aceptaciones.     | 201, 409, 429   |
+| `POST`   | `/auth/login`          | No     | Inicia sesión con correo y contraseña.                                   | 200, 401, 429   |
+| `POST`   | `/auth/google`         | No     | Valida el ID token de Google; `linkPassword` si el correo ya existe.     | 200, 401, 409, 503 |
+| `POST`   | `/auth/refresh`        | Cookie | Rota la sesión y devuelve el usuario.                                    | 200, 401       |
+| `GET`    | `/auth/me`             | Sí     | Usuario de la sesión actual.                                             | 200, 401       |
+| `POST`   | `/auth/logout`         | Sí     | Revoca la sesión actual y limpia la cookie.                              | 204, 401       |
+| `POST`   | `/auth/logout-all`     | Sí     | Revoca todas las sesiones de la cuenta.                                  | 204, 401       |
+| `POST`   | `/auth/email/verify`   | No     | Consume el token de verificación de correo.                              | 204, 400, 429  |
+| `POST`   | `/auth/email/resend`   | Sí     | Genera y envía un enlace de verificación nuevo.                          | 204, 401, 429  |
+| `POST`   | `/auth/password/forgot`| No     | Solicita el enlace de recuperación (responde 204 siempre).               | 204, 429       |
+| `POST`   | `/auth/password/reset` | No     | Cambia la contraseña y revoca todas las sesiones.                        | 204, 400, 429  |
+| `PATCH`  | `/auth/password`       | Sí     | Cambia la contraseña conociendo la actual.                               | 204, 401, 429  |
+| `POST`   | `/auth/legal/accept`   | Sí     | Registra términos y aviso de privacidad (sesiones ya existentes).        | 204, 400       |
+| `PATCH`  | `/auth/me/mode`        | Sí     | Cambia entre `seeker` y `landlord`.                                      | 200, 403       |
+| `POST`   | `/auth/me/landlord`    | Sí     | Habilita el modo arrendador (exige identidad verificada).                | 200, 403       |
+| `DELETE` | `/auth/me`             | Sí     | Agenda la eliminación con 30 días de gracia.                             | 200, 400, 401  |
+
+`GET /auth/me` y las respuestas de sesión devuelven
+`{ user: { id, email, activeMode, emailVerified, firstName, lastName } }`.
+Los endpoints `204` no tienen cuerpo. `DELETE /auth/me` devuelve
+`{ scheduledAt }`.
+
+### Reglas de negocio
+
+- **Registro transaccional.** Crea `users`, las primeras filas de `profiles` y
+  `privacy_settings`, las dos aceptaciones legales (`terms` y `privacy`,
+  versión `2026-01`, con IP y user-agent) y el token de verificación. Exige
+  `acceptTerms=true` y `adultDeclared=true`.
+- **Contraseñas.** bcrypt con coste 12; mínimo 8 caracteres, máximo 72, con al
+  menos una letra y un número.
+- **Tokens de un solo uso.** La verificación de correo vence en 24 horas y la
+  recuperación en 1 hora. El consumo es un `UPDATE ... RETURNING` atómico, así
+  que dos peticiones concurrentes no pueden reutilizar el mismo token. Generar
+  uno nuevo invalida los anteriores no usados del mismo propósito.
+- **Bloqueo por intentos.** Tras 5 fallos la cuenta se bloquea 15 minutos. El
+  error de login es siempre genérico para no revelar si el correo existe.
+- **Recuperación.** `password/forgot` responde 204 aunque el correo no exista.
+  `password/reset` revoca todas las sesiones y desbloquea la cuenta.
+- **Google.** Verifica el ID token contra `GOOGLE_CLIENT_ID`. Si el `sub` ya
+  está vinculado, inicia sesión; si el correo pertenece a una cuenta con
+  contraseña, exige `linkPassword` (o una sesión válida) antes de vincular y
+  nunca crea una segunda cuenta con el mismo correo. Sin `GOOGLE_CLIENT_ID`
+  responde 503.
+- **Modos.** `seeker` siempre está disponible. `landlord` exige
+  `landlord_enabled_at`, y habilitarlo requiere `identity_status='verified'` e
+  `identity_verified_at`.
+- **Eliminación.** `DELETE /auth/me` pide la contraseña (o `confirm: true` en
+  cuentas solo Google), marca `pending_deletion` con 30 días de gracia, revoca
+  sesiones, pausa anuncios `active`/`reserved`, deshace matches activos y
+  cierra conversaciones. La anonimización final la ejecuta
+  `npm run accounts:purge` (idempotente; prográmalo a diario con cron, Task
+  Scheduler o un job del contenedor): reemplaza el correo por
+  `deleted-<id>@deleted.matchroom.invalid` y borra credenciales, identidades,
+  sesiones, tokens y datos personales.
+- **Límite de peticiones.** Los endpoints sensibles usan un contador en memoria
+  por proceso (registro 5/15 min, login 10/15 min, reenvío 3/15 min…). Con
+  varias instancias cada una lleva su propio conteo; para producción
+  multiinstancia conviene un almacén compartido (Redis).
+
+### Correo
+
+- Con `SMTP_HOST` y `MAIL_FROM` configurados, los correos salen por nodemailer
+  (`SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`).
+- Sin SMTP en `development`/`test`, el mensaje completo (con el enlace y el
+  token) se escribe en el log del backend. En la base solo queda el hash, así
+  que el log es la única forma de probar el flujo localmente.
+- Sin SMTP en `production`, los endpoints de correo responden 503 en lugar de
+  simular el envío.
+- `APP_PUBLIC_URL` construye los enlaces
+  `/verificar-correo?token=...` y `/restablecer-contrasena?token=...` que abre
+  el frontend.
+
+### Estado de implementación
+
+| # | Funcionalidad                          | Estado      | Nota                                                                                                 |
+| - | -------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------- |
+| 1 | Registro con correo y contraseña       | Implementado | Validado contra PostgreSQL y desde la UI.                                                            |
+| 2 | Login, bloqueo y sesión                | Implementado | 5 fallos → 15 minutos; cookie `httpOnly`.                                                            |
+| 3 | Login con Google y vinculación         | Parcial     | Código completo; sin `GOOGLE_CLIENT_ID` responde 503, así que no se validó con una credencial real.   |
+| 4 | Refresh, logout y logout-all           | Implementado | Rotación real: el token anterior queda revocado.                                                     |
+| 5 | Verificación de correo y reenvío       | Implementado | La entrega real depende de SMTP; en desarrollo el enlace va al log.                                   |
+| 6 | Recuperación y cambio de contraseña    | Implementado | Tokens de un solo uso; el reset revoca sesiones.                                                     |
+| 7 | Aceptación legal                       | Implementado | Dos documentos versionados con IP y user-agent.                                                      |
+| 8 | Cambio de modo                         | Implementado | `landlord` bloqueado hasta habilitarlo.                                                              |
+| 9 | Activación de arrendador               | Parcial     | Implementada, pero inalcanzable hasta que exista el módulo de verificación de identidad que marque `identity_status='verified'`. |
+| 10 | Eliminación de cuenta                 | Implementado | 30 días de gracia + `npm run accounts:purge` para la anonimización final.                             |
+| 11 | Pantallas de cuenta en el frontend    | Implementado | `/verificar-correo`, `/recuperar-contrasena`, `/restablecer-contrasena`; no se bloquea el onboarding por correo sin verificar. |
+
+Pendiente fuera de este módulo: verificación de identidad real (KYC),
+autenticación en dos pasos, notificaciones de inicio de sesión, límite de
+peticiones distribuido, entrega de correo sin SMTP y migrar `properties` del
+header temporal `x-user-id` a la sesión.
+
 ## Módulo de propiedades
 
 El módulo `properties` implementa la búsqueda, publicación y gestión de
@@ -172,13 +298,16 @@ Filtros de búsqueda disponibles: `cityId`, `zoneIds`, `minPrice`, `maxPrice`,
 `type`, `bedrooms`, `bathrooms`, `furnished`, `availableFrom`, `amenityIds`,
 `sort` (`newest`, `price_asc`, `price_desc`), `cursor` y `limit`.
 
-### Identidad temporal sin módulo de autenticación
+### Identidad en `properties`: header temporal
 
-Mientras `accounts/auth` no esté implementado, los endpoints que requieren
-usuario leen el UUID desde el header `x-user-id`. Es un transporte temporal:
-las reglas de propiedad (propietario, identidad verificada, modo arrendador,
-favoritos y contactos) sí se validan en los servicios. Cuando llegue la
-autenticación JWT, los controllers deben migrar a `@CurrentUser()`.
+`accounts` y `profiles` ya resuelven la identidad con la sesión
+(`SessionGuard` + `@CurrentUserId()`). Los controllers de `properties` siguen
+leyendo el UUID del header `x-user-id` como transporte temporal: las reglas de
+propiedad (propietario, identidad verificada, modo arrendador, favoritos y
+contactos) sí se validan en los servicios, pero cualquier cliente puede enviar
+otro UUID. Es la migración pendiente más importante antes de exponer estos
+endpoints en producción: deben usar `SessionGuard` y `@CurrentUserId()` de
+`src/common/auth`.
 
 ## Estructura
 
@@ -320,7 +449,10 @@ y devuelven `(lng,lat)`.
 
 ## Tests
 
-- Unitarios: `src/config/env.spec.ts`, `src/common/database/point.transformer.spec.ts`.
+- Unitarios: `src/config/env.spec.ts`,
+  `src/common/database/point.transformer.spec.ts` y
+  `src/modules/accounts/application/services/auth.service.spec.ts` (registro,
+  login, bloqueo, rotación de sesión, tokens de un solo uso, modos y borrado).
 - Integración: `test/database.e2e-spec.ts`, que arranca `AppModule`, comprueba
   `/api/v1/health`, verifica las 34 tablas, el número de entidades registradas,
   que las columnas sensibles queden fuera del SELECT por defecto y que las
@@ -341,22 +473,39 @@ npm run test:e2e
 
 ## Variables de entorno
 
-Todas son obligatorias y no tienen valores por defecto en el código. El
-arranque falla con un mensaje claro si falta alguna o tiene un formato inválido.
+Las variables de infraestructura son obligatorias y no tienen valores por
+defecto en el código. El arranque falla con un mensaje claro si falta alguna o
+tiene un formato inválido. Las marcadas como opcionales activan funciones
+(Google, SMTP) o usan un valor por defecto seguro.
 
-| Variable            | Default | Descripción                                                |
-| ------------------- | ------- | ---------------------------------------------------------- |
-| `NODE_ENV`          | —       | `development`, `test` o `production`                       |
-| `PORT`              | —       | Puerto HTTP de la API                                      |
-| `CORS_ORIGIN`       | —       | Origen permitido por CORS (`*` o lista separada por comas) |
-| `DB_HOST`           | —       | Host de PostgreSQL                                         |
-| `DB_PORT`           | —       | Puerto de PostgreSQL                                       |
-| `DB_USERNAME`       | —       | Usuario de PostgreSQL                                      |
-| `DB_PASSWORD`       | —       | Contraseña de PostgreSQL                                   |
-| `DB_DATABASE`       | —       | Nombre de la base de datos                                 |
-| `DB_SSL`            | —       | `true`/`false`, TLS para PostgreSQL gestionado             |
-| `DB_LOGGING`        | —       | `true`/`false`, log de SQL de TypeORM                      |
-| `DB_MIGRATIONS_RUN` | —       | `true`/`false`, ejecutar migraciones al arrancar           |
+| Variable                   | Default              | Descripción                                                          |
+| -------------------------- | -------------------- | -------------------------------------------------------------------- |
+| `NODE_ENV`                 | —                    | `development`, `test` o `production`                                 |
+| `PORT`                     | —                    | Puerto HTTP de la API                                                |
+| `CORS_ORIGIN`              | —                    | Orígenes permitidos por CORS (lista separada por comas; nunca `*`)   |
+| `DB_HOST`                  | —                    | Host de PostgreSQL                                                   |
+| `DB_PORT`                  | —                    | Puerto de PostgreSQL                                                 |
+| `DB_USERNAME`              | —                    | Usuario de PostgreSQL                                                |
+| `DB_PASSWORD`              | —                    | Contraseña de PostgreSQL                                             |
+| `DB_DATABASE`              | —                    | Nombre de la base de datos                                           |
+| `DB_SSL`                   | —                    | `true`/`false`, TLS para PostgreSQL gestionado                       |
+| `DB_LOGGING`               | —                    | `true`/`false`, log de SQL de TypeORM                                |
+| `DB_MIGRATIONS_RUN`        | —                    | `true`/`false`, ejecutar migraciones al arrancar                     |
+| `SESSION_COOKIE_NAME`      | `matchroom_session`  | Nombre de la cookie de sesión                                        |
+| `SESSION_COOKIE_SAME_SITE` | `lax`                | `lax`, `strict` o `none`; con dominios distintos usa `none` + HTTPS  |
+| `SESSION_COOKIE_SECURE`    | `true` en producción | Solo enviar la cookie por HTTPS                                      |
+| `SESSION_TTL_HOURS`        | `168`                | Duración de la sesión en horas (1–2160)                              |
+| `APP_PUBLIC_URL`           | `http://localhost:5173` | Origen del frontend usado en los enlaces de correo                |
+| `GOOGLE_CLIENT_ID`         | — (opcional)         | Sin este valor `/auth/google` responde 503                           |
+| `MAIL_FROM`                | — (opcional)         | Remitente de los correos; junto a `SMTP_HOST` activa el envío real   |
+| `SMTP_HOST`                | — (opcional)         | Servidor SMTP                                                        |
+| `SMTP_PORT`                | `587` si hay SMTP    | Puerto SMTP                                                          |
+| `SMTP_SECURE`              | `false`              | `true`/`false`, TLS directo (normalmente `465`)                      |
+| `SMTP_USER`                | — (opcional)         | Usuario SMTP                                                         |
+| `SMTP_PASSWORD`            | — (opcional)         | Contraseña SMTP                                                      |
+
+Sin SMTP en desarrollo, los enlaces de verificación y recuperación se escriben
+en el log del backend. En producción, sin SMTP, esos endpoints responden 503.
 
 `.env.example` documenta el formato y contiene valores de relleno, nunca
 credenciales reales.
